@@ -17,7 +17,7 @@ A_list, B_list, AB_list, A_avg, B_avg, AB_avg
 import re
 import ast
 
-JS_DIR_PATH = "C:/Users/user/PycharmProjects/ccc_project_evaluation/static/results/result_webgraph/data/"
+JS_DIR_PATH = "./static/results/result_webgraph/data/"
 ALPHA = 0.5
 BETA = 0.5
 
