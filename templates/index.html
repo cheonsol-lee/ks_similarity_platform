@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>CCC Project Evaluation Platform</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- 스타일 -->
+    <link href={{ url_for('static',filename='bootstrap/bootstrap-ko.css') }} rel="stylesheet">
+    <link href={{ url_for('static',filename='bootstrap/bootstrap-responsive.css') }} rel="stylesheet">
+    {#    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">#}
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <!-- 핵심 마케팅 문구나 공고를 위한 히어로 유닛 -->
+    <div class="hero-unit" style="height: 100px">
+        <h1 style="text-align: center;">CCC Project Evaluation Platform</h1>
+        <br><br>
+        <p style="text-align: center;">그룹별로 생성된 지식구조 그래프 간의 유사도를 실시간으로 계산하는 사이트</p>
+    </div>
+
+    <!-- 열들이 있는 행 예제 -->
+    <form method="post" action="/">
+        <div class="row">
+            <div class="span6" style="background-color: #fbcfcf;">
+                <h2 style="text-align: center;">A({{ A_keyword }})</h2>
+
+                <!-- 체크박스 전체선택-->
+                <div style="margin-left:10px;">
+                    <h4><input href="javascript:;" onclick="checkAll_A()" style="zoom: 1.5; vertical-align:-3px;"
+                          type="checkbox"> 전체선택</h4>
+                </div>
+
+                {% for index, A_title in enumerate(A_title_list) %}
+                    <a href="{{ A_link_list[index] }}">
+                        <div style="margin-left:10px; font-size: 15px">
+                            <input style="zoom: 1.5; vertical-align:-3px;" value="{{ index }}" name="A_Check"
+                                   type="checkbox"> {{ index }}: {{ A_title }}
+                        </div>
+                    </a>
+                    <br>
+                {% endfor %}
+
+            </div>
+
+            <div class="span6" style="background-color: lightcyan;">
+                <h2 style="text-align: center;">B({{ B_keyword }})</h2>
+
+                <!-- 체크박스 전체선택-->
+                <div style="margin-left:10px;">
+                    <h4><input href="javascript:;" onclick="checkAll_B()" style="zoom: 1.5; vertical-align:-3px;"
+                          type="checkbox"> 전체선택</h4>
+                </div>
+
+                {% for index, B_title in enumerate(B_title_list) %}
+                    <a href="{{ B_link_list[index] }}">
+                        <div style="margin-left:10px; font-size: 15px">
+                            <input style="zoom: 1.5; vertical-align:-3px;" value="{{ index }}" name="B_Check"
+                                   type="checkbox"> {{ index }}: {{ B_title }}
+                        </div>
+                    </a>
+                    <br>
+                {% endfor %}
+
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+            <div class="span5">
+            </div>
+
+            <div style="text-align: center;" class="span2">
+                <p><input type="submit" style="font-size: 20px; width: 150px; height: 50px"  value="유사도 계산"></p>
+            </div>
+
+            <div class="span5">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="span2">
+            </div>
+            <div class="span8" style="text-align:center; background-color: lightgoldenrodyellow;">
+                <h3>결과</h3>
+                <h4>A선택 인덱스: {{ A_index }}</h4>
+                <h4>B선택 인덱스: {{ B_index }}</h4>
+                <h4>A 그룹 : {{ A_avg }}</h4>
+                <h4>B 그룹 : {{ B_avg }}</h4>
+                <h4>A-B 그룹 : {{ AB_avg }}</h4>
+            </div>
+            <div class="span2">
+            </div>
+        </div>
+
+        <div class="row">
+            <div style="text-align: center;" class="span4"></div>
+
+            <div style="text-align: center;" class="span4">
+                <br>
+                <p>
+                    <input onclick="show_button_content()" type="button" value="상세보기" name="selectGroup"
+                           style="font-size: 20px; width: 150px; height: 50px"></p>
+                <p>
+            </div>
+            <div style="text-align: center;" class="span4"></div>
+        </div>
+    </form>
+
+    <div class="row">
+        <div id="sectionA"
+             style="visibility:hidden;  background-color: #fbcfcf; text-align: center;"
+             class="span4">
+            <h3>A 그룹 유사도</h3>
+
+            {% for index, A_value in enumerate(A_list) %}
+                <p style="text-align: center;">
+                    {{ A_keyword }}_{{ A_value[0] }}, {{ A_keyword }}_{{ A_value[1] }}: {{ A_value[2] }}
+                </p>
+            {% endfor %}
+
+            <br>
+            <h4>
+                <li>개수: {{ A_len }}</li>
+            </h4>
+            <h4>
+                <li>평균: {{ A_avg }}</li>
+            </h4>
+        </div>
+
+        <div id="sectionTotal"
+             style="visibility:hidden; background-color: lightgoldenrodyellow; text-align: center;"
+             class="span4">
+
+            <h3>A-B 그룹 유사도</h3>
+            {% for index, AB_value in enumerate(AB_list) %}
+                <p>
+                    {{ A_keyword }}_{{ AB_value[0] }}, {{ B_keyword }}_{{ AB_value[1] }}: {{ AB_value[2] }}
+                </p>
+            {% endfor %}
+
+            <br>
+            <h4>
+                <li>개수: {{ AB_len }}</li>
+            </h4>
+            <h4>
+                <li>평균: {{ AB_avg }}</li>
+            </h4>
+        </div>
+
+        <div id="sectionB"
+             style="visibility:hidden; background-color: lightcyan; text-align: center;"
+             class="span4">
+            <h3>B 그룹 유사도</h3>
+
+            {% for index, B_value in enumerate(B_list) %}
+                <p>
+                    {{ B_keyword }}_{{ B_value[0] }}, {{ B_keyword }}_{{ B_value[1] }}: {{ B_value[2] }}
+                </p>
+            {% endfor %}
+
+            <br>
+            <h4>
+                <li>개수: {{ B_len }}</li>
+            </h4>
+            <h4>
+                <li>평균: {{ B_avg }}</li>
+            </h4>
+        </div>
+    </div>
+    <hr>
+    <footer>
+        {#        <p style="text-align: right;">©2021. KIRC LAB</p>#}
+    </footer>
+
+</div> <!-- /container -->
+
+
+{# 버튼 자바스크립트 #}
+<script type="text/javascript">
+    function show_button_content() {
+        $("#sectionA").css('visibility', 'visible');
+        $("#sectionB").css('visibility', 'visible');
+        $("#sectionTotal").css('visibility', 'visible');
+    };
+</script>
+<script type="text/javascript">
+    function checkAll_A() {
+        var checkObjs = $("input[name^='A_Check']");
+
+        // 전체선택 해지
+        if (checkObjs.length == $("input[name^='A_Check']:checked").length) {
+            checkObjs.prop("checked", false);
+        }
+        // 전체선택
+        else {
+            checkObjs.prop("checked", true)
+        }
+    }
+
+    function checkAll_B() {
+        var checkObjs = $("input[name^='B_Check']");
+
+        // 전체선택 해지
+        if (checkObjs.length == $("input[name^='B_Check']:checked").length) {
+            checkObjs.prop("checked", false);
+        }
+        // 전체선택
+        else {
+            checkObjs.prop("checked", true)
+        }
+    }
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //라디오 버튼 변경시 이벤트
+        $("input[name='searchType']:radio").change(function () {
+            //라디오 버튼 값을 가져온다.
+            var searchType = this.value;
+
+            if (searchType == "news") {
+                search_type = 'news'
+                $("#viewNewsCategory").show();
+                $("#viewNamuCategory").hide();
+            } else if (searchType == "namu") {
+                search_type = 'namu'
+                $("#viewNewsCategory").hide();
+                $("#viewNamuCategory").show();
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
