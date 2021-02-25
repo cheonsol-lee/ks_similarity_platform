@@ -9,7 +9,7 @@
 
 
 ### Knowledge Structure Similarity Measure
-	[Readme : Knowledge Graph Generator](https://github.com/SoYoungCho/Knowledge-Structure-Similarity-Measure/blob/master/README.md)
+[Readme : Knowledge Graph Generator](https://github.com/SoYoungCho/Knowledge-Structure-Similarity-Measure/blob/master/README.md)
 	Made by SoYoungCho
 
 
