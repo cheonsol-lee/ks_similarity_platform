@@ -15,7 +15,10 @@
 ### Knowledge Structure Similarity Measure
 [Readme : Knowledge Graph Generator](https://github.com/SoYoungCho/Knowledge-Structure-Similarity-Measure)
 	(Made by SoYoungCho)
+	
+	
 ![image](https://user-images.githubusercontent.com/28869864/109144865-16289680-77a5-11eb-9c65-78ed9f9932d5.png)
+
 
 
 ### LICENSE
