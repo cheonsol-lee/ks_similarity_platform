@@ -1,6 +1,10 @@
 # ks_similarity_platform										
 ### Copyright(c) 2021.02.25 All rights reserved by Knowledge Innovation Research Center
 
+### Utility
+	Flask
+	Html
+	Jquery
 
 ### DESCRIPTION
 	This platform can calculate knowledge structure's similarity between two groups.
@@ -10,7 +14,7 @@
 
 ### Knowledge Structure Similarity Measure
 [Readme : Knowledge Graph Generator](https://github.com/SoYoungCho/Knowledge-Structure-Similarity-Measure)
-	Made by SoYoungCho
+	(Made by SoYoungCho)
 
 
 ### LICENSE
