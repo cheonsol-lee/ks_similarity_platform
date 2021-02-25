@@ -3,18 +3,18 @@
 
 
 ### DESCRIPTION
-This program is composed of 8 packages. 
-	- Main.core.sample
+	This platform can calculate knowledge structure's similarity between two groups.
+	If you have a 2 knowledge structure graphs, consider common nodes in there.
+	And consider node & relationship measure.
 
 
-### Knowledge Graph Generator
-[Readme : Knowledge Graph Generator](https://github.com/cheonsol-lee/knowledge_structure_kirc/blob/master/Readme(jupyter).md)
+### Knowledge Structure Similarity Measure
+	[Readme : Knowledge Graph Generator](https://github.com/SoYoungCho/Knowledge-Structure-Similarity-Measure/blob/master/README.md)
+	Made by SoYoungCho
 
-### Knowledge Graph Generator(Neo4j version.)
-[Readme : Knowledge Graph Generator(Neo4j)](https://github.com/cheonsol-lee/knowledge_structure_kirc/blob/master/Readme(neo4j).md)
 
 ### LICENSE
-	Copyright(c)2020 All rights reserved by Knowledge Innovation Research Center
+	Copyright(c)2021 All rights reserved by Knowledge Innovation Research Center
 
 ### CREDIT
 	Soyoung Cho
